@@ -4,7 +4,7 @@ Shypple is a freight forwarder company. That means we help other companies to ge
 
 Have we told you we want to be the biggest freight forwarder company in the world?
 
-The good news is the team MapReduce (yeah, they choose this name) already created a service that aggregates lots of information and returns a JSON file for us. This MapReduce service takes two parameters (start_port & end_port), and return possible shipping options between those two ports. We have given you a sample JSON response from MapReduce service, in this sample we used CNSHA as start_port & NLRTM as end_port.
+The good news is the team MapReduce (yeah, they choose this name) already created a service that aggregates lots of information and returns a JSON file for us. This MapReduce service returns all shipping options available in the database. We have given you a sample JSON response from MapReduce service.
 
 Your job is to create a small service that does some calculations using the JSON file. 
 
@@ -12,7 +12,7 @@ Exchange rates in the JSON file are based on EUR (For example 2022-01-29 usd rat
 
 Your Product Owner created the task for you:
 
-#### (1) PLS-0001 - *Acceptance criteria*: Return the cheapest sailing code in following format
+#### (1) PLS-0001 - *Acceptance criteria*: Return the cheapest direct sailing between origin port & destination port in following format. For example using CNSHA as origin port & NLRTM as destination port input parameters
 
 ```json
 {

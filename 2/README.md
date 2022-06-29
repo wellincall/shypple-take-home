@@ -4,7 +4,7 @@ Shypple is a freight forwarder company. That means we help other companies to ge
 
 Have we told you we want to be the biggest freight forwarder company in the world?
 
-The good news is the team MapReduce (yeah, they choose this name) already created a service that aggregates lots of information and returns a JSON file for us. This MapReduce service takes two parameters (start_port & end_port), and return possible shipping options between those two ports. MapReduce is capable of giving you multiple legs shipping options if available. If you are not familiar with multiple shipment legs, they are very much similar to flying with transits. We have given you a sample JSON response from MapReduce service, in this sample we used CNSHA as start_port & NLRTM as end_port.
+The good news is the team MapReduce (yeah, they choose this name) already created a service that aggregates lots of information and returns a JSON file for us. This MapReduce service returns all shipping options available in the database. We have given you a sample JSON response from MapReduce service.
 
 Your job is to create a small service that does some calculations using the JSON file. 
 
@@ -12,7 +12,8 @@ Exchange rates in the JSON file are based on EUR (For example 2022-01-29 usd rat
 
 Your Product Owner created 3 tickets for you: 3rd task(TST-0003) is a nice to have feature. So it is a bonus task & you can finish it if you have time.
 
-#### (1) PLS-0001 - *Acceptance criteria*: Return the cheapest direct sailing in following format
+#### (1) PLS-0001 - *Acceptance criteria*: Return the cheapest direct sailing between origin port & destination port in following format. For example using CNSHA as origin port & NLRTM as destination port input parameters
+
 
 ```json
 [ 
@@ -28,7 +29,7 @@ Your Product Owner created 3 tickets for you: 3rd task(TST-0003) is a nice to ha
 ]
 ```
 
-#### (2) WRT-0002 - *Acceptance criteria*: Return the cheapest sailing (direct or indirect). If the cheapest one contains more than one sailing (two sailings) in the following format, you should return all sailing legs (You need to compare the sum of all sailing legs to find the cheapest sailing option)
+#### (2) WRT-0002 - *Acceptance criteria*: Return the cheapest sailing (direct or indirect). If the cheapest one contains more than one sailing (two sailings) in the following format, you should return all sailing legs (You need to compare the sum of all sailing legs to find the cheapest sailing option). Use same CNSHA as origin port & NLRTM as destination port input parameters
 
 ```json
 [ 
