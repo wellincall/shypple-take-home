@@ -10,6 +10,10 @@ $ docker compose up --build
 
 Then you can access the application in `localhost:3000`
 
+**At the moment, only the endpoint for direct sailings was implemented**
+
+Due to time constraints, I couldn't finish the minimal tasks.
+
 ## Running tests
 
 ```sh
