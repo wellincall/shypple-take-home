@@ -1,24 +1,17 @@
-# README
+# Shypple take home
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this app, you need to have docker and docker compose installed in your machine.
 
-Things you may want to cover:
+After installing them, you can run the application with the following command:
 
-* Ruby version
+```sh
+$ docker compose up --build
+```
 
-* System dependencies
+Then you can access the application in `localhost:3000`
 
-* Configuration
+## Running tests
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+$ docker compose run web bundle exec rspec
+```
