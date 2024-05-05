@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.descrie "Direct sailings" do
+RSpec.describe "Direct sailings" do
   describe "GET api/v1/direct_sailings" do
     let(:url) { "/api/v1/direct_sailings" }
     let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
@@ -22,10 +22,10 @@ RSpec.descrie "Direct sailings" do
         {
           origin_port: "CNSHA",
           destination_port: "NLRTM",
-          departure_date: "2022-02-01",
-          arrival_date: "2022-03-01",
-          sailing_code: "ABCD",
-          rate: "589.30",
+          departure_date: "2022-01-30",
+          arrival_date: "2022-03-05",
+          sailing_code: "MNOP",
+          rate: "456.78",
           rate_currency: "USD"
         }
       ])
@@ -42,7 +42,7 @@ RSpec.descrie "Direct sailings" do
     end
 
     context "when port is not found" do
-      let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
+      let(:params) { { origin: "BRSSZ", destination: "NLRTM" } }
 
       it "returns :not_found status" do
         get url, params: params
