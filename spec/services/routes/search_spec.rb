@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Routes::Generator do
+RSpec.describe Routes::Search do
   let(:input) do
     {
       "PORT1" => [
@@ -28,11 +28,11 @@ RSpec.describe Routes::Generator do
     }
   end
 
-  let(:generator) { described_class.new(input) }
+  let(:search) { described_class.new(input) }
 
-  describe "#generate(origin, destination)" do
+  describe "#execute(origin, destination)" do
     it "returns all paths between origin and destination" do
-      response = generator.generate("PORT1", "PORT5")
+      response = search.execute("PORT1", "PORT5")
 
       aggregate_failures do
         expect(response.length).to eq(2)
@@ -45,7 +45,7 @@ RSpec.describe Routes::Generator do
 
     context "when origin is not found" do
       it "returns an empty list" do
-        response = generator.generate("PORT10", "PORT5")
+        response = search.execute("PORT10", "PORT5")
 
         expect(response).to eq([])
       end
@@ -53,7 +53,7 @@ RSpec.describe Routes::Generator do
 
     context "when destination is not found" do
       it "returns an empty list" do
-        response = generator.generate("PORT1", "PORT50")
+        response = search.execute("PORT1", "PORT50")
 
         expect(response).to eq([])
       end

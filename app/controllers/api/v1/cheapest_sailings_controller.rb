@@ -2,7 +2,7 @@
 
 class Api::V1::CheapestSailingsController < ApplicationController
   def index
-    paths = path_builder.generate(params[:origin], params[:destination])
+    paths = path_search.execute(params[:origin], params[:destination])
 
     return render status: :not_found if paths.blank?
 
@@ -14,7 +14,7 @@ class Api::V1::CheapestSailingsController < ApplicationController
 
   private
 
-  def path_builder
-    @path_builder ||= Routes::Generator.new(current_mapping)
+  def path_search
+    @path_search ||= Routes::Search.new(current_mapping)
   end
 end

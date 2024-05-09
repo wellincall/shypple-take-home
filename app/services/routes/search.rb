@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class Routes::Generator
+class Routes::Search
   def initialize(sailings)
     @sailings = sailings
   end
 
-  def generate(origin, destination)
+  def execute(origin, destination)
     return [] unless sailings.has_key?(origin)
     return [] unless known_destination?(destination)
 
-    generate_paths_between(origin, destination)
+    search_paths_between(origin, destination)
   end
 
   private
@@ -24,7 +24,7 @@ class Routes::Generator
     end
   end
 
-  def generate_paths_between(origin, target)
+  def search_paths_between(origin, target)
     paths = generate_paths_from_node(origin)
     paths.reject { |path| path.last != target }
   end
