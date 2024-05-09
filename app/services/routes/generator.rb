@@ -12,30 +12,34 @@ class Routes::Generator
     generate_paths_between(origin, destination)
   end
 
+  private
+
   attr_reader :sailings
 
-  def known_destination?(dest)
+  def known_destination?(destination)
     all_destinations = sailings.values.flatten
 
-    all_destinations.any? do |destination|
-      destination[:destination_port] == dest
+    all_destinations.any? do |leg|
+      leg[:destination_port] == destination
     end
   end
 
-  def generate_paths_between(origin, target, parents=[])
-    return [] if sailings[origin].blank?
-
-    next_destinations = sailings[origin].map {|l| l[:destination_port]}.uniq
-     
+  def generate_paths_between(origin, target)
+    paths = generate_paths_from_node(origin)
+    paths.reject { |path| path.last != target }
   end
 
-  def generate_path_from(node, path)
+  def generate_paths_from_node(node, path=[])
     return path if sailings[node].blank?
+
+    paths = [path + [node]]
+    current_path = path + [node]
     
     next_destinations = sailings[node].map {|dest| dest[:destination_port]}.uniq
-    next_destinations = next_destinations.reject {|nd| path.include?(nd) }
-    next_destinations.map do |nd|
-      generate_path_from(nd, path +[node])
+    available_destinations = next_destinations.reject {|nd| path.include?(nd) }
+    available_destinations.each do |nd|
+      paths += generate_paths_from_node(nd, current_path)
     end
+    paths
   end
 end

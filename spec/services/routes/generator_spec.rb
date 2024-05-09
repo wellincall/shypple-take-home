@@ -32,13 +32,15 @@ RSpec.describe Routes::Generator do
 
   describe "#generate(origin, destination)" do
     it "returns all paths between origin and destination" do
-      binding.pry
       response = generator.generate("PORT1", "PORT5")
 
-      expect(response).to eq([
-        ["PORT1", "PORT5"],
-        ["PORT1", "PORT2", "PORT5"]
-      ])
+      aggregate_failures do
+        expect(response.length).to eq(2)
+        expect(response).to include(
+          ["PORT1", "PORT5"],
+          ["PORT1", "PORT2", "PORT5"]
+        )
+      end
     end
 
     context "when origin is not found" do
