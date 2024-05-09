@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :direct_sailings, only: :index
+      resources :cheapest_sailings, only: :index
     end
   end
 end

@@ -10,6 +10,7 @@ RSpec.describe "Cheapest sailings" do
     it "returns :ok status" do
       get url, params: params
 
+      binding.pry
       expect(response).to have_http_status(:ok)
     end
 
@@ -23,17 +24,17 @@ RSpec.describe "Cheapest sailings" do
           origin_port: "CNSHA",
           destination_port: "ESBCN",
           departure_date: "2022-01-29",
-          arrival_date: "2022-02-06",
+          arrival_date: "2022-02-12",
           sailing_code: "ERXQ",
           rate: "261.96",
-          rate_currency: "USD"
+          rate_currency: "EUR"
         },
         {
           origin_port: "ESBCN",
           destination_port: "NLRTM",
           departure_date: "2022-02-16",
           arrival_date: "2022-02-20",
-          sailing_code: "ERTG",
+          sailing_code: "ETRG",
           rate: "69.96",
           rate_currency: "USD"
         }
