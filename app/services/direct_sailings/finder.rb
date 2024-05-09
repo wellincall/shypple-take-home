@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class DirectSailings::Finder
-  def initialize(sailings)
+  def initialize(sailings, sorter: DirectSailings::Sorters::ByCost.new)
     @sailings = sailings
+    @sorter = sorter
   end
 
   def call(origin, destination)
@@ -14,7 +15,7 @@ class DirectSailings::Finder
     end
 
     connections_by_cost = direct_connections.sort do |leg1, leg2|
-      leg1[:cost_in_eur].to_d <=> leg2[:cost_in_eur].to_d
+      sorter.call(leg1, leg2)
     end
 
     connections_by_cost[0].merge(origin_port: origin)
@@ -22,7 +23,7 @@ class DirectSailings::Finder
 
   private
 
-  attr_reader :sailings
+  attr_reader :sailings, :sorter
 
   def has_direct_connection?(origin, destination)
     sailings[origin].any? do |leg|
