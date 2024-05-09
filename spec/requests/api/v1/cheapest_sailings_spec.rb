@@ -10,7 +10,6 @@ RSpec.describe "Cheapest sailings" do
     it "returns :ok status" do
       get url, params: params
 
-      binding.pry
       expect(response).to have_http_status(:ok)
     end
 
@@ -52,7 +51,7 @@ RSpec.describe "Cheapest sailings" do
     end
 
     context "when port is not found" do
-      let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
+      let(:params) { { origin: "CNSHA", destination: "BRNFT" } }
 
       it "returns :not_found status" do
         get url, params: params
