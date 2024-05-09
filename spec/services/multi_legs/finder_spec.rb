@@ -60,7 +60,6 @@ RSpec.describe MultiLegs::Finder do
           arrival_date: "2023-01-03",
           sailing_code: "SAIL002",
           rate_currency: "EUR",
-          cost_in_eur: "50",
           rate: "100"
         },
         { 
@@ -70,7 +69,6 @@ RSpec.describe MultiLegs::Finder do
           arrival_date: "2023-01-05",
           sailing_code: "SAIL003",
           rate_currency: "EUR",
-          cost_in_eur: "25",
           rate: "100"
         }
       ])
@@ -124,7 +122,6 @@ RSpec.describe MultiLegs::Finder do
               arrival_date: "2023-01-04",
               sailing_code: "SAIL001",
               rate_currency: "EUR",
-              cost_in_eur: "10",
               rate: "100"
             }
         ])
@@ -179,7 +176,6 @@ RSpec.describe MultiLegs::Finder do
           arrival_date: "2023-01-04",
           sailing_code: "SAIL001",
           rate_currency: "EUR",
-          cost_in_eur: "100",
           rate: "100"
         }
         ])

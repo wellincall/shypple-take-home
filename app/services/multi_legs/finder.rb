@@ -24,6 +24,7 @@ class MultiLegs::Finder
       path.each_cons(2) do |origin, destination|
         response = path_finder.call(origin, destination)
         cost += response[:cost_in_eur].to_d
+        response.delete(:cost_in_eur)
         sailings += [response.merge(origin_port: origin)]
       end
       if acc.has_key?(cost)
