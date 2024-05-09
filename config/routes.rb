@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :direct_sailings, only: :index
       resources :cheapest_sailings, only: :index
+      resources :fastest_sailings, only: :index
     end
   end
 end

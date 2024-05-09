@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "Direct sailings" do
-  describe "GET api/v1/direct_sailings" do
-    let(:url) { "/api/v1/direct_sailings" }
+RSpec.describe "Fastest sailings" do
+  describe "GET api/v1/fastest_sailings" do
+    let(:url) { "/api/v1/fastest_sailings" }
     let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
 
     it "returns :ok status" do
@@ -21,11 +21,20 @@ RSpec.describe "Direct sailings" do
       expect(parsed_response).to eq([
         {
           origin_port: "CNSHA",
+          destination_port: "ESBCN",
+          departure_date: "2022-01-29",
+          arrival_date: "2022-02-12",
+          sailing_code: "ERXQ",
+          rate: "261.96",
+          rate_currency: "EUR"
+        },
+        {
+          origin_port: "ESBCN",
           destination_port: "NLRTM",
-          departure_date: "2022-02-01",
-          arrival_date: "2022-03-01",
-          sailing_code: "ABCD",
-          rate: "589.30",
+          departure_date: "2022-02-16",
+          arrival_date: "2022-02-20",
+          sailing_code: "ETRG",
+          rate: "69.96",
           rate_currency: "USD"
         }
       ])
@@ -42,7 +51,7 @@ RSpec.describe "Direct sailings" do
     end
 
     context "when port is not found" do
-      let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
+      let(:params) { { origin: "CNSHA", destination: "NLAMS" } }
 
       it "returns :not_found status" do
         get url, params: params
