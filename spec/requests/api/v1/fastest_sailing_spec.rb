@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.descrie "Direct sailings" do
+RSpec.describe "Direct sailings" do
   describe "GET api/v1/direct_sailings" do
     let(:url) { "/api/v1/direct_sailings" }
     let(:params) { { origin: "CNSHA", destination: "NLRTM" } }

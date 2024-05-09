@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.descrie "Cheapest sailings" do
+RSpec.describe "Cheapest sailings" do
   describe "GET api/v1/cheapest_sailings" do
     let(:url) { "/api/v1/cheapest_sailings" }
     let(:params) { { origin: "CNSHA", destination: "NLRTM" } }
