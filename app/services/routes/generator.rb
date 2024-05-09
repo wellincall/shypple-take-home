@@ -30,10 +30,10 @@ class Routes::Generator
   end
 
   def generate_paths_from_node(node, path=[])
-    return path if sailings[node].blank?
+    current_path = path + [node]
+    return [current_path] if sailings[node].blank?
 
     paths = [path + [node]]
-    current_path = path + [node]
     
     next_destinations = sailings[node].map {|dest| dest[:destination_port]}.uniq
     available_destinations = next_destinations.reject {|nd| path.include?(nd) }

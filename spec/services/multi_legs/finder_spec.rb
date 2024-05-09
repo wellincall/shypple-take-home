@@ -52,7 +52,28 @@ RSpec.describe MultiLegs::Finder do
     it "returns legs that result in lowest cost" do
       response = service.call
 
-      expect(response).to eq(["SAIL002", "SAIL003"])
+      expect(response).to eq([
+        { 
+          origin_port: "PORT1",
+          destination_port: "PORT3",
+          departure_date: "2023-01-01",
+          arrival_date: "2023-01-03",
+          sailing_code: "SAIL002",
+          rate_currency: "EUR",
+          cost_in_eur: "50",
+          rate: "100"
+        },
+        { 
+          origin_port: "PORT3",
+          destination_port: "PORT2",
+          departure_date: "2023-01-04",
+          arrival_date: "2023-01-05",
+          sailing_code: "SAIL003",
+          rate_currency: "EUR",
+          cost_in_eur: "25",
+          rate: "100"
+        }
+      ])
     end
 
     context "when cheapest path contains a single leg" do
@@ -95,7 +116,18 @@ RSpec.describe MultiLegs::Finder do
       it "returns it in list" do
         response = service.call
 
-        expect(response).to eq(["SAIL001"])
+        expect(response).to eq([
+            { 
+              origin_port: "PORT1",
+              destination_port: "PORT2",
+              departure_date: "2023-01-03",
+              arrival_date: "2023-01-04",
+              sailing_code: "SAIL001",
+              rate_currency: "EUR",
+              cost_in_eur: "10",
+              rate: "100"
+            }
+        ])
       end
     end
 
@@ -140,7 +172,17 @@ RSpec.describe MultiLegs::Finder do
       it "returns the shortest trip" do
         response = service.call
 
-        expect(response).to eq(["SAIL001"])
+        expect(response).to eq([{
+          origin_port: "PORT1",
+          destination_port: "PORT2",
+          departure_date: "2023-01-03",
+          arrival_date: "2023-01-04",
+          sailing_code: "SAIL001",
+          rate_currency: "EUR",
+          cost_in_eur: "100",
+          rate: "100"
+        }
+        ])
       end
     end
   end
